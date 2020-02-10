@@ -1,0 +1,45 @@
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <form class="form-container" [formGroup]="agendaForm" (ngSubmit)="savePerson()">
+      <label>
+        Nombre:
+        <input type="text" formControlName="firstName" required placeholder="Ingrese el Nombre">
+         <div *ngIf="(agendaForm.get('firstName').invalid && agendaForm.get('firstName').touched) || agendaForm.get('firstName').dirty">
+           <small *ngIf="agendaForm.get('firstName').errors?.required" class="text-danger">Nombre requerido</small>
+         </div>
+      </label>
+    
+      <label>
+        Apellido:
+        <input [class.is-invalid] = "agendaForm.get('lastName').invalid && agendaForm.get('lastName').touched"
+        type="text" formControlName="lastName" required placeholder="Ingrese el Apellido">
+        <div *ngIf="(agendaForm.get('lastName').invalid && agendaForm.get('lastName').touched) || agendaForm.get('lastName').dirty">
+          <small *ngIf="agendaForm.get('lastName').errors?.required" class="text-danger">Apellido requerido</small>
+        </div>
+      </label>
+      <label>
+        Edad:
+        <input type="number" formControlName="age" required placeholder="Edad">
+        <div *ngIf="(agendaForm.get('age').invalid && agendaForm.get('age').touched) || agendaForm.get('age').dirty">
+          <small *ngIf="agendaForm.get('age').errors?.required" class="text-danger">Edad requerida</small>
+          <small *ngIf="agendaForm.get('age').errors?.ageRange" class="text-danger">Edad Invalida</small>
+        </div>        
+      </label>
+    
+      <label>
+        Email:
+        <input  [class.is-invalid] = "agendaForm.get('email').invalid && agendaForm.get('email').touched"
+         type="email" formControlName="email" required placeholder="Correo electrónico">
+         <div *ngIf="(agendaForm.get('email').invalid && agendaForm.get('email').touched) || agendaForm.get('email').dirty">
+          <small *ngIf="agendaForm.get('email').errors?.required" class="text-danger">Email requerido</small>
+          <small *ngIf="agendaForm.get('email').errors?.pattern" class="text-danger">Por favor ingrese un email válido</small>
+        </div>
+    
+      </label>
+   
+      <button class="btn btn-block" type="submit" [disabled]="!agendaForm.valid">GUARDAR PERSONA</button>
+    </form>
+  </div>
+  <hr class="linedivision">
+  <app-list-agenda [infoinput] ="people"></app-list-agenda>
+</div>
