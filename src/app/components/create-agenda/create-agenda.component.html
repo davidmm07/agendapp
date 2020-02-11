@@ -1,6 +1,7 @@
 <div class="container-fluid">
   <div class="row justify-content-center">
     <form class="form-container" [formGroup]="agendaForm" (ngSubmit)="savePerson()">
+      <div class="agenda text-center"> <h4>Agenda</h4></div>
       <label>
         Nombre:
         <input type="text" formControlName="firstName" required placeholder="Ingrese el Nombre">
